@@ -1,0 +1,168 @@
+﻿@page
+@model DocumentsModel
+@{
+    ViewData["Title"] = "Documents & Credentials";
+}
+
+<div class="container py-5">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 mb-3">Documents & Credentials</h1>
+        <p class="lead text-muted">My professional documents, certificates, and awards</p>
+    </div>
+
+    <!-- Documents Grid -->
+    <div class="row">
+        @foreach (var document in Model.Documents)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="document-card">
+                    <div class="document-icon">
+                        @switch (document.DocumentType.ToLower())
+                        {
+                            case "resume":
+                                <i class="fas fa-file-alt"></i>
+                                break;
+                            case "certificate":
+                                <i class="fas fa-certificate"></i>
+                                break;
+                            case "award":
+                                <i class="fas fa-trophy"></i>
+                                break;
+                            case "letter":
+                                <i class="fas fa-envelope-open-text"></i>
+                                break;
+                            default:
+                                <i class="fas fa-file-pdf"></i>
+                                break;
+                        }
+                    </div>
+
+                    <div class="document-content">
+                        <h5 class="document-title">@document.Title</h5>
+                        <p class="document-description">@document.Description</p>
+
+                        <div class="document-meta">
+                            <span class="document-type">@document.DocumentType</span>
+                        </div>
+                    </div>
+
+                    <div class="document-actions">
+                        <a href="@document.FilePath" target="_blank" class="btn-download">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                        <a href="@document.FilePath" target="_blank" class="btn-preview">
+                            <i class="fas fa-eye"></i> Preview
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .document-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f0f0f0;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+        }
+
+    .document-icon {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+        .document-icon i {
+            font-size: 3rem;
+            color: #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            padding: 1.5rem;
+            border-radius: 50%;
+        }
+
+    .document-content {
+        flex-grow: 1;
+        margin-bottom: 1.5rem;
+    }
+
+    .document-title {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .document-description {
+        color: #6c757d;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+    .document-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .document-type {
+        background: #667eea;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .document-date {
+        color: #95a5a6;
+        font-size: 0.9rem;
+    }
+
+    .document-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .btn-download, .btn-preview {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .btn-download {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .btn-preview {
+        background: #f8f9fa;
+        color: #2c3e50;
+        border: 1px solid #e9ecef;
+    }
+
+    .btn-download:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-preview:hover {
+        background: #e9ecef;
+    }
+</style>

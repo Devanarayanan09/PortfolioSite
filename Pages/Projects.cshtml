@@ -1,0 +1,115 @@
+﻿@page "{experienceId:int?}"
+@model ProjectsModel
+@{
+    ViewData["Title"] = "Projects Portfolio";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <div class="heading-wrapper">
+            <h1 class="main-heading">
+                <span class="heading-text">Projects</span>
+                <span class="heading-accent">Portfolio</span>
+            </h1>
+            <div class="heading-underline"></div>
+            <p class="heading-description">There's not much, but I am working on it!</p>
+        </div>
+    </div>
+
+
+    <!-- Experience Filter - Combined Style -->
+    <div class="row mb-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h5 class="text-gradient mb-1">Filter by Experience</h5>
+                        <p class="text-muted small">Select a company to view related projects</p>
+                    </div>
+
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <!-- All Projects Button with Count -->
+                        <a asp-page="/Projects"
+                           class="btn btn-filter-combined @(Model.SelectedExperienceId == null ? "btn-filter-active-combined" : "btn-filter-inactive-combined")">
+                            <div class="filter-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="filter-content">
+                                <span class="filter-text">All Projects</span>
+                                <span class="filter-count-badge">@Model.Projects.Count</span>
+                            </div>
+                        </a>
+
+                        <!-- Company Filters with Counts -->
+                        @foreach (var exp in Model.Experiences)
+                        {
+                            var projectCount = Model.Projects.Count(p => p.ExperienceId == exp.Id);
+                            <a asp-page="/Projects" asp-route-experienceId="@exp.Id"
+                               class="btn btn-filter-combined @(Model.SelectedExperienceId == exp.Id ? "btn-filter-active-combined" : "btn-filter-inactive-combined")">
+                                <div class="filter-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="filter-content">
+                                    <span class="filter-text">@exp.Company</span>
+                                    <span class="filter-count-badge">@projectCount</span>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Projects Grid -->
+    <div class="row">
+        @foreach (var project in Model.Projects)
+        {
+            <div class="col-lg-6 mb-4">
+                <div class="card project-card h-100">
+                    <img src="@project.ImageUrl" class="card-img-top" alt="@project.Title" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@project.Title</h5>
+
+                        @if (project.Experience != null)
+                        {
+                            <div class="mb-2">
+                                <span class="badge bg-info">@project.Experience.Company</span>
+                                <span class="badge bg-secondary">@project.Experience.Position</span>
+                            </div>
+                        }
+
+                        <p class="card-text">@Html.Raw(project.Description)</p>
+
+                        <div class="mb-3">
+                            <strong>Technologies:</strong>
+                            @foreach (var tech in project.Technologies.Split(','))
+                            {
+                                <span class="tech-badge">@tech.Trim()</span>
+                            }
+                        </div>
+
+                        <a href="@project.ProjectUrl" target="_blank" class="btn btn-primary">View Project</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            @if (project.Experience != null)
+                            {
+                                <text> • During tenure at @project.Experience.Company</text>
+                            }
+                        </small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!Model.Projects.Any())
+    {
+        <div class="text-center py-5">
+            <h4>No projects found</h4>
+            <p>Select a different experience filter or check back later for new projects.</p>
+        </div>
+    }
+</div>
