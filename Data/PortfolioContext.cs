@@ -94,6 +94,15 @@ namespace PortfolioSite.Data
                     FilePath = "/images/Documents/Award2.png",
                     DocumentType = "Award Certificate",
                     IsPublic = true
+                },
+                new Document
+                {
+                    Id = 5,
+                    Title = "Experience Letter",
+                    Description = "Experience Letter From Infosys",
+                    FilePath = "/images/Documents/Experience_Letter.pdf",
+                    DocumentType = "Experience Letter",
+                    IsPublic = true
                 }
             );
         }

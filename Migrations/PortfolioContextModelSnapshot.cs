@@ -118,6 +118,15 @@ namespace PortfolioSite.Migrations
                             FilePath = "/images/Documents/Award2.png",
                             IsPublic = true,
                             Title = "Award2"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Experience Letter From Infosys",
+                            DocumentType = "Experience Letter",
+                            FilePath = "/images/Documents/Experience_Letter.pdf",
+                            IsPublic = true,
+                            Title = "Experience Letter"
                         });
                 });
 
