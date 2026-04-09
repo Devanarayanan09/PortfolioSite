@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model DocumentsModel
 @{
     ViewData["Title"] = "Documents & Credentials";
@@ -7,8 +7,8 @@
 <div class="container py-5">
     <!-- Header -->
     <div class="text-center mb-5">
-        <h1 class="display-4 mb-3">Documents & Credentials</h1>
-        <p class="lead text-muted">My professional documents, certificates, and awards</p>
+        <h1 class="display-4 mb-3 text-light">Documents & Credentials</h1>
+        <p class="lead text-light" style="opacity: 0.75;">My professional documents, certificates, and awards</p>
     </div>
 
     <!-- Documents Grid -->
@@ -16,7 +16,7 @@
         @foreach (var document in Model.Documents)
         {
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="document-card">
+                <div class="glass-card mb-4 h-100 d-flex flex-column bg-transparent border border-secondary shadow-lg">
                     <div class="document-icon">
                         @switch (document.DocumentType.ToLower())
                         {
@@ -62,23 +62,6 @@
 </div>
 
 <style>
-    .document-card {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-        border: 1px solid #f0f0f0;
-        transition: all 0.3s ease;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-        .document-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
-        }
-
     .document-icon {
         text-align: center;
         margin-bottom: 1.5rem;
@@ -86,8 +69,8 @@
 
         .document-icon i {
             font-size: 3rem;
-            color: #667eea;
-            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            color: var(--accent-primary);
+            background: rgba(59, 130, 246, 0.1);
             padding: 1.5rem;
             border-radius: 50%;
         }
@@ -99,13 +82,13 @@
 
     .document-title {
         font-weight: 700;
-        color: #2c3e50;
+        color: var(--text-primary);
         margin-bottom: 0.5rem;
         font-size: 1.2rem;
     }
 
     .document-description {
-        color: #6c757d;
+        color: var(--text-secondary);
         margin-bottom: 1rem;
         line-height: 1.5;
     }
@@ -117,7 +100,7 @@
     }
 
     .document-type {
-        background: #667eea;
+        background: var(--accent-gradient);
         color: white;
         padding: 0.3rem 0.8rem;
         border-radius: 15px;
@@ -126,7 +109,7 @@
     }
 
     .document-date {
-        color: #95a5a6;
+        color: var(--text-secondary);
         font-size: 0.9rem;
     }
 
@@ -147,14 +130,14 @@
     }
 
     .btn-download {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--accent-gradient);
         color: white;
     }
 
     .btn-preview {
-        background: #f8f9fa;
-        color: #2c3e50;
-        border: 1px solid #e9ecef;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-primary);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .btn-download:hover {

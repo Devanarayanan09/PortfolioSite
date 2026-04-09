@@ -1,16 +1,21 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home";
 }
 
-<section class="hero-section">
-    <div class="container-fluid">
+<section class="hero-section py-5 px-3 d-flex align-items-center" style="min-height: 60vh;">
+    <div class="container animate-float">
         <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h1 class="display-4 mb-4">Hi, I'm Deva</h1>
-                <p class="lead mb-4">.NET Developer with 3+ years of experience building scalable web applications</p>
-                <a href="#experience" class="btn btn-light btn-lg">View My Experience</a>
+            <div class="col-lg-10 mx-auto text-center">
+                <h1 class="display-2 mb-4 fw-bolder tracking-tight">Hi, I'm <span class="text-primary">Deva</span></h1>
+                <p class="lead mb-5 text-light fs-4" style="max-width: 800px; margin: 0 auto;">
+                    .NET Developer with 3+ years of experience building scalable web applications.
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#experience" class="btn btn-primary btn-lg">View Experience</a>
+                    <a asp-page="/Projects" class="btn btn-outline-primary btn-lg">View Projects</a>
+                </div>
             </div>
         </div>
     </div>
@@ -21,11 +26,11 @@
         <h2 class="text-center mb-5">Professional Experience</h2>
 
         <div class="row">
-            <div class="col-lg-8 mx-auto">
+            <div class="col-lg-10 mx-auto">
                 @foreach (var experience in Model.Experiences)
                 {
-                    <div class="experience-card card mb-4">
-                        <div class="card-body">
+                    <div class="glass-card mb-4 mb-lg-5">
+                        <div class="card-body bg-transparent p-0">
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
                                     <h4 class="card-title">@experience.Position</h4>
@@ -57,7 +62,7 @@
                                         @foreach (var project in experience.Projects.Take(2))
                                         {
                                             <div class="col-md-6 mb-2">
-                                                <div class="card project-preview-card">
+                                                <div class="glass-panel text-start h-100">
                                                     <div class="card-body p-3">
                                                         <h6 class="card-title mb-1">@project.Title</h6>
                                                         <p class="card-text small mb-1">@Html.Raw(project.Description)</p>
@@ -86,41 +91,21 @@
     </div>
 </section>
 
-<section class="bg-light py-5">
+<section class="bg-transparent py-5 border-top border-secondary" style="border-color: var(--glass-border) !important;">
     <div class="container text-center">
-        <h2 class="mb-4">View My Complete Portfolio</h2>
-        <p class="lead mb-4">Explore all my projects and detailed work experience</p>
-        <a asp-page="/Projects" class="btn btn-primary btn-lg">View Full Portfolio</a>
+        <h2 class="mb-4 text-light">View My Complete Portfolio</h2>
+        <p class="lead mb-4 text-secondary">Explore all my projects and detailed work experience</p>
+        <a asp-page="/Projects" class="btn btn-outline-primary btn-lg">View Full Portfolio</a>
     </div>
 </section>
 
 <style>
-    .experience-card {
-        transition: transform 0.3s ease;
-        border: none;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-        .experience-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
     .project-preview-card {
-        border: 1px solid #e9ecef;
-        border-radius: 10px;
         transition: all 0.2s ease;
     }
 
-        .project-preview-card:hover {
-            border-color: var(--secondary-color);
-            background-color: #f8f9fa;
-        }
-
-    .tech-badge.small {
-        font-size: 0.7rem;
-        padding: 2px 6px;
-        margin: 1px;
+    .project-preview-card:hover {
+        border-color: var(--accent-primary);
+        background-color: rgba(255, 255, 255, 0.05);
     }
 </style>
