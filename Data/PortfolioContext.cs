@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PortfolioSite.Models;
 
 namespace PortfolioSite.Data
@@ -17,7 +17,6 @@ namespace PortfolioSite.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Seed sample experiences
             modelBuilder.Entity<Experience>().HasData(
                 new Experience
                 {
@@ -29,6 +28,16 @@ namespace PortfolioSite.Data
                     EndDate = new DateTime(2025, 7, 29),
                     IsCurrent = false,
                     Technologies = "C#, ASP.NET MVC, SQL Server, .NET Core, ADO.NET",
+                },
+                new Experience
+                {
+                    Id = 2,
+                    Company = "Cocopalms Tech Pvt Lmtd",
+                    Position = "Senior Backend Developer",
+                    Description = "Architecting robust backend systems and RESTful APIs. Specializing in high-performance data processing and scalable architectures using .NET Core and PostgreSQL.",
+                    StartDate = new DateTime(2025, 12, 2),
+                    IsCurrent = true,
+                    Technologies = "ASP.NET Core Web API, PostgreSQL, Microservices",
                 }
             );
 
@@ -39,7 +48,7 @@ namespace PortfolioSite.Data
                     Id = 1,
                     Title = "GLOMO",
                     Description = "• Developed 5+ declarations requiring employee acceptance in line with client specifications, enabling document generation and download functionality of the declarations for admin review. <br>• Configured visa-types by refactoring 20+ stored procedures and application logic. <br>• Implemented automated mailers for status updates, eliminating manual processing entirely. ",
-                    ImageUrl = "/images/Projects/GLOMO.png",
+                    ImageUrl = "/images/Projects/GLOMO.jpg",
                     ProjectUrl = "",
                     Technologies = "ASP.NET Core, ASP.NET, MVC, SQL Server, Entity Framework",
                     IsFeatured = true,
@@ -50,11 +59,22 @@ namespace PortfolioSite.Data
                     Id = 2,
                     Title = "IVISA",
                     Description = "• Designed various admin functionalities like document download, approval/rejection, admin stages etc. <br>• Integrated file validation APIs to enforce country-specific document compliance, reducing manual verification by 90%. <br>• Deployed an email notification system that removed all manual status update tasks. ",
-                    ImageUrl = "/images/Projects/IVISA.png",
+                    ImageUrl = "/images/Projects/GLOMO.jpg",
                     ProjectUrl = "",
                     Technologies = "ASP.NET, ADO.NET, MVC, SQL Server",
                     IsFeatured = true,
                     ExperienceId = 1
+                },
+                new Project
+                {
+                    Id = 3,
+                    Title = "Bizo",
+                    Description = "• Architected a highly scalable Finance engine using .NET Web API and PostgreSQL. <br>• Implemented asynchronous event-driven architecture using RabbitMQ, reducing transaction latency by 40%. <br>• Optimized SQL queries and indexing strategies, handling over 10k transactions per minute. ",
+                    ImageUrl = "/images/Projects/Cocopalms.png",
+                    ProjectUrl = "",
+                    Technologies = "ASP.NET Core Web API, PostgreSQL, Redis, RabbitMQ, Docker",
+                    IsFeatured = true,
+                    ExperienceId = 2
                 }
             );
 

@@ -1,97 +1,71 @@
 @page
 @model ContactModel
 @{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Contact Me";
 }
 
-<div class="container py-5">
-    <!-- Stylish Header -->
-    <div class="text-center mb-5">
-        <h1 class="contact-main-title">Get In Touch</h1>
-        <p class="contact-subtitle">Let's connect and create something amazing</p>
-        <div class="header-divider">
-            <div class="divider-line"></div>
-            <i class="fas fa-star divider-icon"></i>
-            <div class="divider-line"></div>
-        </div>
+<div class="container py-5 mt-5">
+    <div class="text-center mb-5 reveal">
+        <h1 class="display-3 fw-bold mb-3">Get in <span class="text-gradient">Touch</span></h1>
+        <p class="lead text-secondary" style="max-width: 700px; margin: 0 auto;">
+            I'm always open to discussing new projects, backend architecture, or potential opportunities in the .NET ecosystem.
+        </p>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-xl-6">
-            <div class="glass-card contact-card p-5 bg-transparent border border-secondary shadow-lg">
-                <div class="contact-card-header">
-                    <i class="fas fa-paper-plane contact-card-icon mb-3" style="font-size: 3rem; color: var(--text-primary);"></i>
-                    <h2 class="contact-card-title text-light">Contact Information</h2>
-                </div>
-
-                <div class="contact-content">
+    <div class="row justify-content-center reveal" style="animation-delay: 0.1s">
+        <div class="col-lg-8">
+            <div class="glass-card p-4 p-md-5">
+                <div class="row g-4 mb-5">
                     <!-- Email -->
-                    <div class="contact-item-wrapper">
-                        <div class="contact-item">
-                            <div class="contact-icon-circle">
-                                <i class="fas fa-envelope"></i>
+                    <div class="col-md-6">
+                        <div class="contact-method p-4 h-100">
+                            <div class="contact-icon mb-3">
+                                <i class="fas fa-envelope fa-2x text-gradient"></i>
                             </div>
-                            <div class="contact-text">
-                                <h4 class="contact-label">Email</h4>
-                                <a href="mailto:devanarayananja98@gmail.com" class="contact-value">
-                                    devanarayananja98@gmail.com
-                                </a>
-                            </div>
-                            <div class="contact-action">
-                                <a href="mailto:devanarayananja98@gmail.com" class="action-btn">
-                                    <i class="fas fa-paper-plane"></i>
-                                </a>
-                            </div>
+                            <h4 class="h5 fw-bold mb-2">Email Me</h4>
+                            <p class="text-muted small mb-3">Direct response within 24 hours</p>
+                            <a href="mailto:devanarayananja98@gmail.com" class="text-white fw-bold text-decoration-none border-bottom border-cyan pb-1">
+                                devanarayananja98@gmail.com
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Mobile -->
-                    <div class="contact-item-wrapper">
-                        <div class="contact-item">
-                            <div class="contact-icon-circle">
-                                <i class="fas fa-phone"></i>
+                    <!-- Call -->
+                    <div class="col-md-6">
+                        <div class="contact-method p-4 h-100">
+                            <div class="contact-icon mb-3">
+                                <i class="fas fa-phone-alt fa-2x text-gradient"></i>
                             </div>
-                            <div class="contact-text">
-                                <h4 class="contact-label">Mobile</h4>
-                                <a href="tel:+919447270493" class="contact-value">
-                                    +91 9447270493
-                                </a>
-                            </div>
-                            <div class="contact-action">
-                                <a href="tel:+919447270493" class="action-btn">
-                                    <i class="fas fa-phone"></i>
-                                </a>
-                            </div>
+                            <h4 class="h5 fw-bold mb-2">Call Me</h4>
+                            <p class="text-muted small mb-3">Available for urgent discussions</p>
+                            <a href="tel:+919447270493" class="text-white fw-bold text-decoration-none border-bottom border-cyan pb-1">
+                                +91 9447270493
+                            </a>
                         </div>
                     </div>
 
                     <!-- Location -->
-                    <div class="contact-item-wrapper">
-                        <div class="contact-item">
-                            <div class="contact-icon-circle">
-                                <i class="fas fa-map-marker-alt"></i>
+                    <div class="col-12">
+                        <div class="contact-method p-4 d-flex align-items-center gap-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt fa-2x text-gradient"></i>
                             </div>
-                            <div class="contact-text">
-                                <h4 class="contact-label">Location</h4>
-                                <span class="contact-value">Trivandrum, India</span>
-                            </div>
-                            <div class="contact-action">
-                                <a href="https://maps.google.com/?q=Trivandrum,India" target="_blank" class="action-btn">
-                                    <i class="fas fa-map"></i>
-                                </a>
+                            <div>
+                                <h4 class="h5 fw-bold mb-1">Location</h4>
+                                <p class="text-muted mb-0">Trivandrum, Kerala, India — Working Globally</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Quick Action Buttons -->
-                <div class="contact-actions">
-                    <a href="mailto:devanarayananja98@gmail.com" class="quick-action-btn primary">
-                        <i class="fas fa-envelope me-2"></i>Send Email
-                    </a>
-                    <a href="tel:+919447270493" class="quick-action-btn secondary">
-                        <i class="fas fa-phone me-2"></i>Call Now
-                    </a>
+                <!-- Footer Call to Action -->
+                <div class="text-center border-top border-secondary pt-5 mt-2" style="border-color: var(--glass-border) !important;">
+                    <h3 class="h4 fw-bold mb-4">Alternatively, connect with me on social platforms</h3>
+                    <div class="d-flex justify-content-center gap-4">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter fa-2x"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -99,222 +73,40 @@
 </div>
 
 <style>
-    /* Main Title */
-    .contact-main-title {
-        font-size: 3.5rem;
-        font-weight: 800;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-        letter-spacing: -1px;
-    }
-
-    .contact-subtitle {
-        font-size: 1.3rem;
-        color: #6c757d;
-        font-weight: 300;
-        margin-bottom: 2rem;
-    }
-
-    .header-divider {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        max-width: 200px;
-        margin: 0 auto;
-    }
-
-    .divider-line {
-        flex: 1;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    }
-
-    .divider-icon {
-        color: var(--text-primary);
-        font-size: 1rem;
-    }
-
-    /* Contact Card Overrides */
-    .contact-card {
-        text-align: center;
-    }
-    
-    .contact-card-header {
-        margin-bottom: 3rem;
-    }
-
-    /* Contact Items */
-    .contact-item-wrapper {
-        margin-bottom: 2rem;
-        position: relative;
-    }
-
-        .contact-item-wrapper::after {
-            content: '';
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        }
-
-        .contact-item-wrapper:last-child::after {
-            display: none;
-        }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 1.5rem;
-        border-radius: 15px;
+    .contact-method {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
         transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-        .contact-item:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateX(5px);
-        }
+    .contact-method:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(99, 102, 241, 0.3);
+        transform: translateY(-5px);
+    }
 
-    .contact-icon-circle {
+    .contact-icon {
         width: 60px;
         height: 60px;
-        background: var(--accent-gradient);
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-size: 1.5rem;
-        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 15px;
     }
 
-    .contact-text {
-        flex-grow: 1;
-        text-align: left;
-    }
-
-    .contact-label {
-        font-size: 0.9rem;
-        font-weight: 600;
+    .social-link {
         color: var(--text-secondary);
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .contact-value {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-        .contact-value:hover {
-            color: var(--accent-secondary);
-        }
-
-    .contact-action .action-btn {
-        width: 50px;
-        height: 50px;
-        background: var(--accent-gradient);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-decoration: none;
         transition: all 0.3s ease;
-        opacity: 0;
-        transform: scale(0.8);
     }
 
-    .contact-item:hover .action-btn {
-        opacity: 1;
-        transform: scale(1);
+    .social-link:hover {
+        color: var(--accent-cyan);
+        transform: translateY(-3px);
     }
 
-    .action-btn:hover {
-        transform: scale(1.1) !important;
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-    }
-
-    /* Quick Action Buttons */
-    .contact-actions {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(102, 126, 234, 0.1);
-    }
-
-    .quick-action-btn {
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-    }
-
-        .quick-action-btn.primary {
-            background: var(--accent-gradient);
-            color: white;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .quick-action-btn.secondary {
-            background: transparent;
-            color: var(--accent-primary);
-            border: 2px solid var(--accent-primary);
-        }
-
-        .quick-action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-        }
-
-    /* Responsive Design */
-    @@media (max-width: 768px) {
-        .contact-main-title {
-            font-size: 2.5rem;
-        }
-
-        .contact-subtitle {
-            font-size: 1.1rem;
-        }
-
-        .contact-card {
-            padding: 2rem;
-            margin: 0 1rem;
-        }
-
-        .contact-item {
-            flex-direction: column;
-            text-align: center;
-            gap: 1rem;
-        }
-
-        .contact-actions {
-            flex-direction: column;
-        }
-
-        .quick-action-btn {
-            justify-content: center;
-        }
-
-        .contact-action .action-btn {
-            opacity: 1;
-            transform: scale(1);
-        }
+    .border-cyan {
+        border-color: var(--accent-cyan) !important;
     }
 </style>

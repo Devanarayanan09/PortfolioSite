@@ -4,17 +4,31 @@
     ViewData["Title"] = "Home";
 }
 
-<section class="hero-section py-5 px-3 d-flex align-items-center" style="min-height: 60vh;">
-    <div class="container animate-float">
-        <div class="row">
-            <div class="col-lg-10 mx-auto text-center">
-                <h1 class="display-2 mb-4 fw-bolder tracking-tight">Hi, I'm <span class="text-primary">Deva</span></h1>
-                <p class="lead mb-5 text-light fs-4" style="max-width: 800px; margin: 0 auto;">
-                    .NET Developer with 3+ years of experience building scalable web applications.
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="badge bg-primary bg-opacity-10 text-cyan mb-3 px-3 py-2 rounded-pill border border-cyan border-opacity-25" style="color: var(--accent-cyan);">
+                    Available for new opportunities
+                </div>
+                <h1 class="display-1 fw-bold mb-4">
+                    Building <span class="text-gradient">Scalable</span> <br />
+                    Backend Systems
+                </h1>
+                <p class="lead text-secondary mb-5 fs-4" style="max-width: 600px;">
+                    I'm Deva, a Senior Backend Developer specializing in architecting high-performance APIs and robust database solutions with .NET and PostgreSQL.
                 </p>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="#experience" class="btn btn-primary btn-lg">View Experience</a>
-                    <a asp-page="/Projects" class="btn btn-outline-primary btn-lg">View Projects</a>
+                <div class="d-flex gap-3">
+                    <a href="#experience" class="btn btn-premium">Explore Experience</a>
+                    <a asp-page="/Projects" class="btn btn-premium-outline">View My Work</a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block position-relative">
+                <div class="position-absolute top-50 start-50 translate-middle" style="width: 500px; height: 500px; background: var(--accent-gradient); filter: blur(120px); opacity: 0.3; border-radius: 50%; animation: pulse-glow 4s infinite alternate;"></div>
+                <div class="glass-card p-5 text-center shadow-2xl" style="border: 1px solid rgba(255,255,255,0.2);">
+                    <i class="fas fa-rocket fa-5x text-gradient mb-4"></i>
+                    <h3 class="h4 fw-bold">Ready for Launch</h3>
+                    <p class="text-secondary small">Architecting high-performance systems for the modern web.</p>
                 </div>
             </div>
         </div>
@@ -23,66 +37,55 @@
 
 <section id="experience" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-5">Professional Experience</h2>
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold mb-3">Professional <span class="text-gradient">Journey</span></h2>
+            <p class="text-secondary lead">My career progression and notable achievements</p>
+        </div>
 
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                @foreach (var experience in Model.Experiences)
+                @foreach (var experience in Model.Experiences.OrderByDescending(e => e.StartDate))
                 {
-                    <div class="glass-card mb-4 mb-lg-5">
-                        <div class="card-body bg-transparent p-0">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
-                                    <h4 class="card-title">@experience.Position</h4>
-                                    <h5 class="text-primary">@experience.Company</h5>
-                                </div>
-                                <div class="text-end">
-                                    <span class="badge bg-primary">
-                                        @experience.StartDate.ToString("MMM yyyy") -
-                                        @(experience.IsCurrent ? "Present" : experience.EndDate?.ToString("MMM yyyy"))
-                                    </span>
-                                </div>
+                    <div class="glass-card mb-5 exp-card p-4 p-md-5">
+                        <div class="row">
+                            <div class="col-md-3 mb-3 mb-md-0">
+                                <span class="exp-date">
+                                    @experience.StartDate.ToString("MMM yyyy") — 
+                                    @(experience.IsCurrent ? "PRESENT" : experience.EndDate?.ToString("MMM yyyy"))
+                                </span>
+                                <h5 class="exp-company mt-2">@experience.Company</h5>
                             </div>
+                            <div class="col-md-9">
+                                <h3 class="h4 fw-bold mb-3">@experience.Position</h3>
+                                <p class="text-secondary mb-4 fs-5">@experience.Description</p>
+                                
+                                <div class="tech-stack mb-4">
+                                    @foreach (var tech in experience.Technologies.Split(','))
+                                    {
+                                        <span class="tech-pill">@tech.Trim()</span>
+                                    }
+                                </div>
 
-                            <p class="card-text mt-3">@experience.Description</p>
-
-                            <div class="tech-stack mb-3">
-                                <strong>Technologies:</strong>
-                                @foreach (var tech in experience.Technologies.Split(','))
+                                @if (experience.Projects.Any())
                                 {
-                                    <span class="tech-badge">@tech.Trim()</span>
+                                    <div class="projects-preview mt-4">
+                                        <h6 class="text-secondary mb-3 text-uppercase small ls-wide">Featured Projects in this role:</h6>
+                                        <div class="row g-3">
+                                            @foreach (var project in experience.Projects.Take(2))
+                                            {
+                                                <div class="col-md-6">
+                                                    <a asp-page="/Projects" asp-fragment="project-@project.Id" class="text-decoration-none">
+                                                        <div class="glass-card p-3 h-100 border-opacity-10 bg-transparent">
+                                                            <h6 class="text-primary mb-1">@project.Title</h6>
+                                                            <p class="text-secondary small mb-0">@Html.Raw(project.Description.Substring(0, Math.Min(60, project.Description.Length)))...</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
                                 }
                             </div>
-
-                            @if (experience.Projects.Any())
-                            {
-                                <div class="projects-preview">
-                                    <h6 class="mb-2">Key Projects:</h6>
-                                    <div class="row">
-                                        @foreach (var project in experience.Projects.Take(2))
-                                        {
-                                            <div class="col-md-6 mb-2">
-                                                <div class="glass-panel text-start h-100">
-                                                    <div class="card-body p-3">
-                                                        <h6 class="card-title mb-1">@project.Title</h6>
-                                                        <p class="card-text small mb-1">@Html.Raw(project.Description)</p>
-                                                        <div class="d-flex flex-wrap">
-                                                            @foreach (var tech in project.Technologies.Split(',').Take(2))
-                                                            {
-                                                                <span class="tech-badge small">@tech.Trim()</span>
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>
-                                    <a asp-page="/Projects" asp-route-experienceId="@experience.Id"
-                                       class="btn btn-outline-primary btn-sm mt-2">
-                                        View All Projects (@experience.Projects.Count)
-                                    </a>
-                                </div>
-                            }
                         </div>
                     </div>
                 }
@@ -91,21 +94,18 @@
     </div>
 </section>
 
-<section class="bg-transparent py-5 border-top border-secondary" style="border-color: var(--glass-border) !important;">
-    <div class="container text-center">
-        <h2 class="mb-4 text-light">View My Complete Portfolio</h2>
-        <p class="lead mb-4 text-secondary">Explore all my projects and detailed work experience</p>
-        <a asp-page="/Projects" class="btn btn-outline-primary btn-lg">View Full Portfolio</a>
+<section class="py-5 text-center">
+    <div class="container">
+        <div class="glass-card p-5">
+            <h2 class="display-5 fw-bold mb-4">Let's build something <span class="text-gradient">remarkable</span></h2>
+            <p class="lead text-secondary mb-5 mx-auto" style="max-width: 700px;">
+                I am always interested in discussing complex backend challenges, system design, or innovative software engineering projects.
+            </p>
+            <a asp-page="/Contact" class="btn btn-premium btn-lg px-5">Get In Touch</a>
+        </div>
     </div>
 </section>
 
 <style>
-    .project-preview-card {
-        transition: all 0.2s ease;
-    }
-
-    .project-preview-card:hover {
-        border-color: var(--accent-primary);
-        background-color: rgba(255, 255, 255, 0.05);
-    }
+    .ls-wide { letter-spacing: 0.1em; }
 </style>
