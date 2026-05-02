@@ -15,4 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Close Mobile Navbar on Outside Click
+    document.addEventListener('click', (e) => {
+        const navbar = document.querySelector('.navbar');
+        const collapse = document.querySelector('.navbar-collapse');
+        const toggler = document.querySelector('.navbar-toggler');
+        
+        if (collapse.classList.contains('show') && !navbar.contains(e.target)) {
+            // Using Bootstrap's Collapse instance to hide it
+            const bsCollapse = bootstrap.Collapse.getInstance(collapse);
+            if (bsCollapse) {
+                bsCollapse.hide();
+            } else {
+                // Fallback for older bootstrap versions or if instance isn't initialized
+                toggler.click();
+            }
+        }
+    });
 });
