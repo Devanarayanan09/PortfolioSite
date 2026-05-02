@@ -1,112 +1,59 @@
 @page
 @model ContactModel
 @{
-    ViewData["Title"] = "Contact Me";
+    ViewData["Title"] = "Connect";
 }
 
-<div class="container py-5 mt-5">
-    <div class="text-center mb-5 reveal">
-        <h1 class="display-3 fw-bold mb-3">Get in <span class="text-gradient">Touch</span></h1>
-        <p class="lead text-secondary" style="max-width: 700px; margin: 0 auto;">
-            I'm always open to discussing new projects, backend architecture, or potential opportunities in the .NET ecosystem.
-        </p>
+<section class="bg-accent py-5 mt-5">
+    <div class="container py-5 reveal">
+        <h1 class="display-3 fw-bold mb-3">Let's <span class="text-primary">Collaborate</span></h1>
+        <p class="lead text-muted">Whether it's a technical challenge or a new opportunity, I'm just a message away.</p>
     </div>
+</section>
 
-    <div class="row justify-content-center reveal" style="animation-delay: 0.1s">
-        <div class="col-lg-8">
-            <div class="glass-card p-4 p-md-5">
-                <div class="row g-4 mb-5">
-                    <!-- Email -->
-                    <div class="col-md-6">
-                        <div class="contact-method p-4 h-100">
-                            <div class="contact-icon mb-3">
-                                <i class="fas fa-envelope fa-2x text-gradient"></i>
-                            </div>
-                            <h4 class="h5 fw-bold mb-2">Email Me</h4>
-                            <p class="text-muted small mb-3">Direct response within 24 hours</p>
-                            <a href="mailto:devanarayananja98@gmail.com" class="text-white fw-bold text-decoration-none border-bottom border-cyan pb-1">
-                                devanarayananja98@gmail.com
-                            </a>
-                        </div>
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 reveal">
+                <div class="card-neo text-center">
+                    <div class="mb-4 text-primary d-inline-block p-4 rounded-circle bg-light">
+                        <i class="fas fa-paper-plane fa-3x"></i>
                     </div>
-
-                    <!-- Call -->
-                    <div class="col-md-6">
-                        <div class="contact-method p-4 h-100">
-                            <div class="contact-icon mb-3">
-                                <i class="fas fa-phone-alt fa-2x text-gradient"></i>
-                            </div>
-                            <h4 class="h5 fw-bold mb-2">Call Me</h4>
-                            <p class="text-muted small mb-3">Available for urgent discussions</p>
-                            <a href="tel:+919447270493" class="text-white fw-bold text-decoration-none border-bottom border-cyan pb-1">
-                                +91 9447270493
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Location -->
-                    <div class="col-12">
-                        <div class="contact-method p-4 d-flex align-items-center gap-4">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt fa-2x text-gradient"></i>
-                            </div>
-                            <div>
-                                <h4 class="h5 fw-bold mb-1">Location</h4>
-                                <p class="text-muted mb-0">Trivandrum, Kerala, India — Working Globally</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="h5 mb-3">Email Me</h3>
+                    <p class="text-muted small mb-4">Direct and official communication.</p>
+                    <a href="mailto:devanarayananja98@gmail.com" class="fw-bold text-primary text-decoration-none">devanarayananja98@gmail.com</a>
                 </div>
-
-                <!-- Footer Call to Action -->
-                <div class="text-center border-top border-secondary pt-5 mt-2" style="border-color: var(--glass-border) !important;">
-                    <h3 class="h4 fw-bold mb-4">Alternatively, connect with me on social platforms</h3>
-                    <div class="d-flex justify-content-center gap-4">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin fa-2x"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github fa-2x"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter fa-2x"></i></a>
+            </div>
+            <div class="col-lg-4 reveal" style="transition-delay: 0.1s">
+                <div class="card-neo text-center">
+                    <div class="mb-4 text-success d-inline-block p-4 rounded-circle bg-light">
+                        <i class="fab fa-whatsapp fa-3x"></i>
                     </div>
+                    <h3 class="h5 mb-3">WhatsApp</h3>
+                    <p class="text-muted small mb-4">For quick chats and urgent matters.</p>
+                    <a href="tel:+919447270493" class="fw-bold text-success text-decoration-none">+91 9447270493</a>
+                </div>
+            </div>
+            <div class="col-lg-4 reveal" style="transition-delay: 0.2s">
+                <div class="card-neo text-center">
+                    <div class="mb-4 text-info d-inline-block p-4 rounded-circle bg-light">
+                        <i class="fab fa-linkedin-in fa-3x"></i>
+                    </div>
+                    <h3 class="h5 mb-3">LinkedIn</h3>
+                    <p class="text-muted small mb-4">Check my professional network.</p>
+                    <a href="#" class="fw-bold text-info text-decoration-none">Connect with Deva</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5 pt-5 reveal">
+            <div class="card-neo bg-light border-0 p-5 text-center">
+                <h3 class="mb-4">Currently Based In</h3>
+                <div class="d-flex justify-content-center align-items-center gap-2 text-primary fw-bold">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Trivandrum, Kerala, India — Working Globally</span>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<style>
-    .contact-method {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        transition: all 0.3s ease;
-    }
-
-    .contact-method:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(99, 102, 241, 0.3);
-        transform: translateY(-5px);
-    }
-
-    .contact-icon {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 15px;
-    }
-
-    .social-link {
-        color: var(--text-secondary);
-        transition: all 0.3s ease;
-    }
-
-    .social-link:hover {
-        color: var(--accent-cyan);
-        transform: translateY(-3px);
-    }
-
-    .border-cyan {
-        border-color: var(--accent-cyan) !important;
-    }
-</style>
+</section>

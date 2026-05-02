@@ -180,6 +180,16 @@ namespace PortfolioSite.Migrations
                             Position = "Senior Systems Engineer",
                             StartDate = new DateTime(2022, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Technologies = "C#, ASP.NET MVC, SQL Server, .NET Core, ADO.NET"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Company = "Cocopalms Tech Pvt Lmtd",
+                            Description = "Architecting robust backend systems and RESTful APIs. Specializing in high-performance data processing and scalable architectures using .NET Core and PostgreSQL.",
+                            IsCurrent = true,
+                            Position = "Senior Backend Developer",
+                            StartDate = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Technologies = "ASP.NET Core Web API, PostgreSQL, Microservices"
                         });
                 });
 
@@ -232,7 +242,7 @@ namespace PortfolioSite.Migrations
                             Id = 1,
                             Description = "• Developed 5+ declarations requiring employee acceptance in line with client specifications, enabling document generation and download functionality of the declarations for admin review. <br>• Configured visa-types by refactoring 20+ stored procedures and application logic. <br>• Implemented automated mailers for status updates, eliminating manual processing entirely. ",
                             ExperienceId = 1,
-                            ImageUrl = "/images/Projects/GLOMO.png",
+                            ImageUrl = "/images/Projects/GLOMO.jpg",
                             IsFeatured = true,
                             ProjectUrl = "",
                             Technologies = "ASP.NET Core, ASP.NET, MVC, SQL Server, Entity Framework",
@@ -243,11 +253,22 @@ namespace PortfolioSite.Migrations
                             Id = 2,
                             Description = "• Designed various admin functionalities like document download, approval/rejection, admin stages etc. <br>• Integrated file validation APIs to enforce country-specific document compliance, reducing manual verification by 90%. <br>• Deployed an email notification system that removed all manual status update tasks. ",
                             ExperienceId = 1,
-                            ImageUrl = "/images/Projects/IVISA.png",
+                            ImageUrl = "/images/Projects/GLOMO.jpg",
                             IsFeatured = true,
                             ProjectUrl = "",
                             Technologies = "ASP.NET, ADO.NET, MVC, SQL Server",
                             Title = "IVISA"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "• Developed backend services using .NET Web API with PostgreSQL for scalable and efficient data management <br>• Led development of finance modules, implementing core accounting logic and system workflows <br>• Implemented GST compliance features for Indian operations, ensuring accurate taxation and reporting <br>• Designed and built 15+ accounting and financial reports, improving data visibility and reporting efficiency <br>• Developed statistical reporting features to support business analytics and decision-making <br>• Implemented multi-branch architecture, enabling seamless operations across multiple business units <br>• Built 18+ kitchen management reports covering diet planning, inventory tracking, and operational insights <br>• Performed API testing and validation using Postman and Swagger, ensuring reliability and correctness <br>• Wrote unit tests (AI-assisted) to improve code quality and maintainability <br>• Leveraged AI tools such as Antigravity to enhance development productivity and accelerate implementation <br>• Collaborated on improving system performance, data accuracy, and scalability",
+                            ExperienceId = 2,
+                            ImageUrl = "/images/Projects/Cocopalms.png",
+                            IsFeatured = true,
+                            ProjectUrl = "https://bizosuite.com/",
+                            Technologies = "ASP.NET Core Web API, PostgreSQL, Swagger",
+                            Title = "Bizo"
                         });
                 });
 

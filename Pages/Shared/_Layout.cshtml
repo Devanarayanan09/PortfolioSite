@@ -3,12 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Devanarayanan | Senior Backend Developer</title>
+    <title>@ViewData["Title"] - Devanarayanan</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -16,56 +15,50 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="aurora-bg">
-        <div class="aurora-blob blob-1"></div>
-        <div class="aurora-blob blob-2"></div>
-        <div class="aurora-blob blob-3"></div>
-    </div>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm glass-nav fixed-top">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" asp-page="/Index">
-                    <span class="text-gradient fw-bold fs-4" style="font-family: var(--font-heading);">Devanarayanan</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Index" ? "active" : "")" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Projects" ? "active" : "")" asp-page="/Projects">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Documents" ? "active" : "")" asp-page="/Documents">Documents</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Contact" ? "active" : "")" asp-page="/Contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid px-0">
+            <a class="navbar-brand" asp-page="/Index">DEVA.</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Index" ? "active" : "")" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Projects" ? "active" : "")" asp-page="/Projects">Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Documents" ? "active" : "")" asp-page="/Documents">Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Contact" ? "active" : "")" asp-page="/Contact">Contact</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <div class="container-fluid p-0">
-        <main role="main" class="reveal">
-            @RenderBody()
-        </main>
-    </div>
+    <main role="main">
+        @RenderBody()
+    </main>
 
-    <footer class="py-5 text-center mt-5 border-top border-secondary" style="border-color: var(--glass-border) !important;">
+    <footer>
         <div class="container">
-            <p class="text-muted">&copy; 2026 Devanarayanan - Built with .NET & Passion</p>
+            <h3 class="mb-4">DEVA.</h3>
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="#" class="text-muted"><i class="fab fa-github fa-lg"></i></a>
+                <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="#" class="text-muted"><i class="fab fa-twitter fa-lg"></i></a>
+            </div>
+            <p class="text-light small">&copy; 2026 Devanarayanan. Built for the modern web.</p>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
