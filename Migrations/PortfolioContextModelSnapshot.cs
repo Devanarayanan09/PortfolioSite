@@ -174,7 +174,7 @@ namespace PortfolioSite.Migrations
                         {
                             Id = 1,
                             Company = "Infosys Limited",
-                            Description = "In charge of designing, developing, maintaining, and deploying scalable web applications using ASP.NET MVC, with active involvement in release management to test and production environments.",
+                            Description = "Engineered dual-platform solutions (Admin & Employee Portals) for Infosys, streamlining the end-to-end lifecycle of onsite employees. Developed critical systems for document verification, visa processing, and manager approval workflows, ensuring seamless international transitions and landing verification for global talent.",
                             EndDate = new DateTime(2025, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCurrent = false,
                             Position = "Senior Systems Engineer",
@@ -185,7 +185,7 @@ namespace PortfolioSite.Migrations
                         {
                             Id = 2,
                             Company = "Cocopalms Tech Pvt Lmtd",
-                            Description = "Architecting robust backend systems and RESTful APIs. Specializing in high-performance data processing and scalable architectures using .NET Core and PostgreSQL.",
+                            Description = "Spearheading backend development for Cocopalms, a leading Kuwaiti health-tech ecosystem specializing in diet-based food delivery. Developed and maintained several modules of 'Bizo Suite,' a comprehensive accounting engine integrated with their food delivery infrastructure to manage complex financial operations across multiple web and mobile platforms.",
                             IsCurrent = true,
                             Position = "Senior Backend Developer",
                             StartDate = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),

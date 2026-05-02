@@ -59,24 +59,30 @@
             @foreach (var exp in Model.Experiences.OrderByDescending(e => e.StartDate))
             {
                 <div class="col-lg-6 reveal">
-                    <div class="card-neo h-100">
-                        <div class="d-flex justify-content-between align-items-start mb-4">
-                            <div>
-                                <h3 class="h4 mb-1">@exp.Position</h3>
-                                <div class="fw-bold text-primary">@exp.Company</div>
+                    <a asp-page="/Projects" asp-route-experienceId="@exp.Id" class="text-decoration-none d-block h-100">
+                        <div class="card-neo h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-4">
+                                <div>
+                                    <h3 class="h4 mb-1">@exp.Position</h3>
+                                    <div class="fw-bold text-primary">@exp.Company</div>
+                                </div>
+                                <div class="small fw-bold text-muted px-3 py-1 rounded-pill bg-light">
+                                    @exp.StartDate.Year — @(exp.IsCurrent ? "Now" : exp.EndDate?.Year.ToString())
+                                </div>
                             </div>
-                            <div class="small fw-bold text-muted px-3 py-1 rounded-pill bg-light">
-                                @exp.StartDate.Year — @(exp.IsCurrent ? "Now" : exp.EndDate?.Year.ToString())
+                            <p class="text-muted mb-4">@exp.Description</p>
+                            <div class="d-flex flex-wrap gap-2 mb-4">
+                                @foreach (var tech in exp.Technologies.Split(','))
+                                {
+                                    <span class="tag-pill m-0">@tech.Trim()</span>
+                                }
+                            </div>
+                            <div class="mt-auto pt-3 border-top border-light d-flex align-items-center text-primary fw-bold small">
+                                <span>View Projects</span>
+                                <i class="fas fa-arrow-right ms-2 transition-transform"></i>
                             </div>
                         </div>
-                        <p class="text-muted mb-4">@exp.Description</p>
-                        <div class="d-flex flex-wrap">
-                            @foreach (var tech in exp.Technologies.Split(','))
-                            {
-                                <span class="tag-pill">@tech.Trim()</span>
-                            }
-                        </div>
-                    </div>
+                    </a>
                 </div>
             }
         </div>

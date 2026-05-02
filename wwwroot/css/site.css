@@ -173,6 +173,14 @@ section {
     border-color: var(--primary);
 }
 
+.card-neo:hover .fa-arrow-right {
+    transform: translateX(5px);
+}
+
+.transition-transform {
+    transition: transform 0.3s ease;
+}
+
 /* Tags */
 .tag-pill {
     padding: 0.4rem 1rem;
@@ -207,6 +215,22 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .hero-title { font-size: 3.5rem; }
-    .navbar { width: 95%; padding: 0.5rem 1rem; }
+    :root {
+        --section-spacing: 80px;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+    .navbar {
+        width: 95%;
+        border-radius: 1.5rem;
+        padding: 0.75rem 1.25rem;
+    }
+    .navbar-collapse {
+        padding-top: 1rem;
+    }
+    .nav-link {
+        padding: 0.75rem 1rem !important;
+        border-radius: 0.75rem;
+    }
 }
