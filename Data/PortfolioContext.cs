@@ -38,6 +38,16 @@ namespace PortfolioSite.Data
                     StartDate = new DateTime(2025, 12, 2),
                     IsCurrent = true,
                     Technologies = "ASP.NET Core Web API, PostgreSQL, Microservices",
+                },
+                new Experience
+                {
+                    Id = 3,
+                    Company = "Independent Projects",
+                    Position = "Full Stack Developer",
+                    Description = "Developing high-performance, modern web applications and digital solutions as an independent developer. Focused on creating seamless user experiences using cutting-edge technologies and best practices in software architecture.",
+                    StartDate = new DateTime(2024, 1, 1),
+                    IsCurrent = true,
+                    Technologies = "Next.js, TypeScript, Tailwind CSS, Framer Motion, .NET Core Web API, PostgreSQL",
                 }
             );
 
@@ -75,6 +85,17 @@ namespace PortfolioSite.Data
                     Technologies = "ASP.NET Core Web API, PostgreSQL, Swagger",
                     IsFeatured = true,
                     ExperienceId = 2
+                },
+                new Project
+                {
+                    Id = 4,
+                    Title = "Jananthikam",
+                    Description = "Successfully architected and deployed a high-performance, bilingual (English & Malayalam) literary archive and book discovery platform, fully assisted by the Antigravity AI coding assistant. This production-ready application features a curated database of book reviews and author spotlights, utilizing Full-Stack Development to bridge a React-based frontend with a robust C# Restful API. The project showcases Responsive Web Design with premium glassmorphic aesthetics and Localization (i18n) for seamless script switching. Key technical implementations include Cloud Asset Management for persistent image storage, advanced Search Engine Optimization (SEO) via dynamic metadata generation, and complex State Management to handle real-time global library searches and user-driven content.",
+                    ImageUrl = "/images/Projects/Jananthikam.jpg",
+                    ProjectUrl = "https://jananthikam.com/",
+                    Technologies = "Next.js 14, ASP.NET Core, PostgreSQL, TypeScript, Cloud Asset Management (S3), SEO/Metadata API, RESTful API Design",
+                    IsFeatured = true,
+                    ExperienceId = 3
                 }
             );
 

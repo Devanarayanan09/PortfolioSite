@@ -190,6 +190,16 @@ namespace PortfolioSite.Migrations
                             Position = "Senior Backend Developer",
                             StartDate = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Technologies = "ASP.NET Core Web API, PostgreSQL, Microservices"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Company = "Independent Projects",
+                            Description = "Developing high-performance, modern web applications and digital solutions as an independent developer. Focused on creating seamless user experiences using cutting-edge technologies and best practices in software architecture.",
+                            IsCurrent = true,
+                            Position = "Full Stack Developer",
+                            StartDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Technologies = "Next.js, TypeScript, Tailwind CSS, Framer Motion, .NET Core Web API, PostgreSQL"
                         });
                 });
 
@@ -269,6 +279,17 @@ namespace PortfolioSite.Migrations
                             ProjectUrl = "https://bizosuite.com/",
                             Technologies = "ASP.NET Core Web API, PostgreSQL, Swagger",
                             Title = "Bizo"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Successfully architected and deployed a high-performance, bilingual (English & Malayalam) literary archive and book discovery platform, fully assisted by the Antigravity AI coding assistant. This production-ready application features a curated database of book reviews and author spotlights, utilizing Full-Stack Development to bridge a React-based frontend with a robust C# Restful API. The project showcases Responsive Web Design with premium glassmorphic aesthetics and Localization (i18n) for seamless script switching. Key technical implementations include Cloud Asset Management for persistent image storage, advanced Search Engine Optimization (SEO) via dynamic metadata generation, and complex State Management to handle real-time global library searches and user-driven content.",
+                            ExperienceId = 3,
+                            ImageUrl = "/images/Projects/Jananthikam.jpg",
+                            IsFeatured = true,
+                            ProjectUrl = "https://jananthikam.com/",
+                            Technologies = "Next.js 14, ASP.NET Core, PostgreSQL, TypeScript, Cloud Asset Management (S3), SEO/Metadata API, RESTful API Design",
+                            Title = "Jananthikam"
                         });
                 });
 
