@@ -24,5 +24,24 @@ namespace PortfolioSite.Pages
                 .OrderByDescending(d => d.Id)
                 .ToListAsync();
         }
+
+        public string GetVersionedFilePath(string relativePath)
+        {
+            if (string.IsNullOrEmpty(relativePath)) return relativePath;
+
+            var webRoot = _environment.WebRootPath;
+            if (string.IsNullOrEmpty(webRoot))
+            {
+                webRoot = Path.Combine(_environment.ContentRootPath, "wwwroot");
+            }
+
+            var fullPath = Path.Combine(webRoot, relativePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+            if (System.IO.File.Exists(fullPath))
+            {
+                var ticks = System.IO.File.GetLastWriteTimeUtc(fullPath).Ticks;
+                return $"{relativePath}?v={ticks}";
+            }
+            return relativePath;
+        }
     }
 }
