@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using PortfolioSite.Data;
+using PortfolioSite.Helpers;
 
 namespace PortfolioSite.Pages
 {
@@ -19,29 +20,18 @@ namespace PortfolioSite.Pages
 
         public async Task OnGetAsync()
         {
-            Documents = await _context.Documents
-                .Where(d => d.IsPublic)
-                .OrderByDescending(d => d.Id)
-                .ToListAsync();
+            // Resume first, then letters, then awards.
+            Documents = (await _context.Documents
+                    .Where(d => d.IsPublic)
+                    .ToListAsync())
+                .OrderBy(d => d.DocumentType.Equals("Resume", StringComparison.OrdinalIgnoreCase) ? 0
+                            : d.DocumentType.Contains("Letter", StringComparison.OrdinalIgnoreCase) ? 1
+                            : 2)
+                .ThenByDescending(d => d.Id)
+                .ToList();
         }
 
-        public string GetVersionedFilePath(string relativePath)
-        {
-            if (string.IsNullOrEmpty(relativePath)) return relativePath;
-
-            var webRoot = _environment.WebRootPath;
-            if (string.IsNullOrEmpty(webRoot))
-            {
-                webRoot = Path.Combine(_environment.ContentRootPath, "wwwroot");
-            }
-
-            var fullPath = Path.Combine(webRoot, relativePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-            if (System.IO.File.Exists(fullPath))
-            {
-                var ticks = System.IO.File.GetLastWriteTimeUtc(fullPath).Ticks;
-                return $"{relativePath}?v={ticks}";
-            }
-            return relativePath;
-        }
+        public string GetVersionedFilePath(string relativePath) =>
+            ContentHelpers.Versioned(_environment, relativePath);
     }
 }

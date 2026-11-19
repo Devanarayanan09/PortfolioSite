@@ -1,54 +1,39 @@
 @page
 @model DocumentsModel
+@using PortfolioSite.Helpers
 @{
-    ViewData["Title"] = "Credentials";
+    ViewData["Title"] = "Documents";
+    ViewData["Description"] = "Resume, experience and relieving letters, and award certificates of J A Devanarayanan.";
 }
 
-<section class="bg-accent py-5 mt-5">
-    <div class="container py-5 reveal">
-        <h1 class="display-3 fw-bold mb-3">Professional <span class="text-primary">Docs</span></h1>
-        <p class="lead text-muted">Certifications, Awards, and Career Credentials.</p>
+<header class="page-head">
+    <div class="container reveal">
+        <span class="eyebrow">// documents</span>
+        <h1 class="page-title">Documents</h1>
+        <p class="page-lead">My resume, employment letters and award certificates, to view or download.</p>
     </div>
-</section>
+</header>
 
-<section class="py-5">
+<section class="section">
     <div class="container">
-        <div class="row g-4">
+        <div class="doc-grid">
             @foreach (var doc in Model.Documents)
             {
-                <div class="col-lg-4 col-md-6 reveal">
-                    <div class="card-neo h-100 d-flex flex-column">
-                        <div class="d-flex justify-content-between align-items-start mb-4">
-                            <div class="text-primary bg-light p-3 rounded-4">
-                                @switch (doc.DocumentType.ToLower())
-                                {
-                                    case "resume":
-                                        <i class="fas fa-file-pdf fa-2x"></i>
-                                        break;
-                                    case "award certificate":
-                                        <i class="fas fa-award fa-2x text-warning"></i>
-                                        break;
-                                    case "relieving letter":
-                                    case "experience letter":
-                                        <i class="fas fa-signature fa-2x"></i>
-                                        break;
-                                    default:
-                                        <i class="fas fa-file-alt fa-2x"></i>
-                                        break;
-                                }
-                            </div>
-                            <span class="small fw-bold text-muted bg-light px-2 py-1 rounded">@doc.DocumentType</span>
-                        </div>
-
-                        <h3 class="h5 mb-2">@doc.Title</h3>
-                        <p class="text-muted small flex-grow-1 mb-4">@doc.Description</p>
-
-                        <div class="d-flex gap-2">
-                            <a href="@Model.GetVersionedFilePath(doc.FilePath)" target="_blank" class="btn-main flex-grow-1 text-center py-2 px-0 fs-6">View</a>
-                            <a href="@Model.GetVersionedFilePath(doc.FilePath)" download class="btn-alt py-2 px-3"><i class="fas fa-download"></i></a>
-                        </div>
+                var url = Model.GetVersionedFilePath(doc.FilePath);
+                var type = doc.DocumentType.ToLowerInvariant();
+                var icon = type.Contains("award") ? "award" : "file";
+                <article class="card doc reveal @(type == "resume" ? "is-featured" : "")">
+                    <div class="doc-top">
+                        <div class="focus-icon" style="margin:0">@Icon.Get(icon, 20)</div>
+                        <span class="doc-type">@doc.DocumentType</span>
                     </div>
-                </div>
+                    <h2>@doc.Title</h2>
+                    <p>@doc.Description</p>
+                    <div class="doc-actions">
+                        <a class="btn @(type == "resume" ? "btn-primary" : "btn-secondary") btn-sm" href="@url" target="_blank" rel="noopener">@Icon.Get("eye", 16) View</a>
+                        <a class="btn btn-secondary btn-sm btn-icon" href="@url" download aria-label="Download @doc.Title">@Icon.Get("download", 16)</a>
+                    </div>
+                </article>
             }
         </div>
     </div>

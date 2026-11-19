@@ -21,9 +21,11 @@ namespace PortfolioSite.Pages
         {
             SelectedExperienceId = experienceId;
 
-            Experiences = await _context.Experiences
-                .OrderByDescending(e => e.StartDate)
-                .ToListAsync();
+            // Employers newest first; the side-projects entry goes last.
+            Experiences = (await _context.Experiences.ToListAsync())
+                .OrderBy(e => e.Company == "Independent Projects")
+                .ThenByDescending(e => e.StartDate)
+                .ToList();
 
             var query = _context.Projects
                 .Include(p => p.Experience)
@@ -34,9 +36,11 @@ namespace PortfolioSite.Pages
                 query = query.Where(p => p.ExperienceId == experienceId.Value);
             }
 
-            Projects = await query
-                .OrderByDescending(p => p.Id)
-                .ToListAsync();
+            Projects = (await query.ToListAsync())
+                .OrderBy(p => p.Experience?.Company == "Independent Projects")
+                .ThenByDescending(p => p.Experience?.StartDate)
+                .ThenBy(p => p.Id)
+                .ToList();
         }
     }
 }

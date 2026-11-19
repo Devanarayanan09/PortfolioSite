@@ -1,58 +1,56 @@
 @page
 @model ContactModel
+@using PortfolioSite.Helpers
 @{
-    ViewData["Title"] = "Connect";
+    ViewData["Title"] = "Contact";
+    ViewData["Description"] = "Contact J A Devanarayanan, senior backend developer (.NET, PostgreSQL, SQL Server) in Thiruvananthapuram, India.";
 }
 
-<section class="bg-accent py-5 mt-5">
-    <div class="container py-5 reveal">
-        <h1 class="display-3 fw-bold mb-3">Let's <span class="text-primary">Collaborate</span></h1>
-        <p class="lead text-muted">Whether it's a technical challenge or a new opportunity, I'm just a message away.</p>
+<header class="page-head">
+    <div class="container reveal">
+        <span class="eyebrow">// contact</span>
+        <h1 class="page-title">Get in touch</h1>
+        <p class="page-lead">For backend roles, interviews or questions about my work, email is the quickest way to reach me.</p>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <div class="contact-grid">
+            <a class="card contact-card reveal" href="mailto:devanarayananja98@gmail.com">
+                <div class="focus-icon">@Icon.Get("mail", 20)</div>
+                <span class="label">Email</span>
+                <span class="value">devanarayananja98@gmail.com</span>
+            </a>
+            <a class="card contact-card reveal" href="tel:+919447270493">
+                <div class="focus-icon">@Icon.Get("phone", 20)</div>
+                <span class="label">Phone / WhatsApp</span>
+                <span class="value">+91 94472 70493</span>
+            </a>
+            <a class="card contact-card reveal" href="https://www.linkedin.com/in/deva-narayanan-9b2114306" target="_blank" rel="noopener">
+                <div class="focus-icon">@Icon.Get("linkedin", 20)</div>
+                <span class="label">LinkedIn</span>
+                <span class="value">linkedin.com/in/deva-narayanan-9b2114306</span>
+            </a>
+            <div class="card contact-card reveal">
+                <div class="focus-icon">@Icon.Get("map-pin", 20)</div>
+                <span class="label">Location</span>
+                <span class="value">Thiruvananthapuram, Kerala, India</span>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="py-5">
+<section class="section">
     <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-4 reveal">
-                <div class="card-neo text-center">
-                    <div class="mb-4 text-primary d-inline-block p-4 rounded-circle bg-light">
-                        <i class="fas fa-paper-plane fa-3x"></i>
-                    </div>
-                    <h3 class="h5 mb-3">Email Me</h3>
-                    <p class="text-muted small mb-4">Direct and official communication.</p>
-                    <a href="mailto:devanarayananja98@gmail.com" class="fw-bold text-primary text-decoration-none">devanarayananja98@gmail.com</a>
-                </div>
+        <div class="cta reveal">
+            <div>
+                <h2>Want the full picture first?</h2>
+                <p>My resume covers my experience at Cocopalms and Infosys, the projects and my technical skills.</p>
             </div>
-            <div class="col-lg-4 reveal" style="transition-delay: 0.1s">
-                <div class="card-neo text-center">
-                    <div class="mb-4 text-success d-inline-block p-4 rounded-circle bg-light">
-                        <i class="fab fa-whatsapp fa-3x"></i>
-                    </div>
-                    <h3 class="h5 mb-3">WhatsApp</h3>
-                    <p class="text-muted small mb-4">For quick chats and urgent matters.</p>
-                    <a href="tel:+919447270493" class="fw-bold text-success text-decoration-none">+91 9447270493</a>
-                </div>
-            </div>
-            <div class="col-lg-4 reveal" style="transition-delay: 0.2s">
-                <div class="card-neo text-center">
-                    <div class="mb-4 text-info d-inline-block p-4 rounded-circle bg-light">
-                        <i class="fab fa-linkedin-in fa-3x"></i>
-                    </div>
-                    <h3 class="h5 mb-3">LinkedIn</h3>
-                    <p class="text-muted small mb-4">Check my professional network.</p>
-                    <a href="#" class="fw-bold text-info text-decoration-none">Connect with Deva</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-5 pt-5 reveal">
-            <div class="card-neo bg-light border-0 p-5 text-center">
-                <h3 class="mb-4">Currently Based In</h3>
-                <div class="d-flex justify-content-center align-items-center gap-2 text-primary fw-bold">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Trivandrum, Kerala, India — Working Globally</span>
-                </div>
+            <div class="cta-actions">
+                <a class="btn btn-primary" asp-page="/Documents">@Icon.Get("file") Resume &amp; documents</a>
+                <a class="btn btn-ghost" asp-page="/Projects" asp-route-experienceId="">See projects</a>
             </div>
         </div>
     </div>

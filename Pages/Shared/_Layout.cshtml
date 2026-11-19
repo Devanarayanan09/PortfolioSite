@@ -1,63 +1,93 @@
+@using PortfolioSite.Helpers
+@inject IWebHostEnvironment Env
+@{
+    var currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+    string NavClass(string page) => currentPage == page ? "nav-link is-active" : "nav-link";
+    string? AriaCurrent(string page) => currentPage == page ? "page" : null;
+    var resumeUrl = ContentHelpers.Versioned(Env, "/images/Documents/Resume.pdf");
+    var title = ViewData["Title"] as string;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Devanarayanan</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@(string.IsNullOrEmpty(title) ? "J A Devanarayanan · Senior Backend Developer" : $"{title} · J A Devanarayanan")</title>
+    <meta name="description" content="@(ViewData["Description"] ?? "J A Devanarayanan, senior backend developer in Thiruvananthapuram. C#, ASP.NET Core Web API, .NET 8, PostgreSQL and SQL Server.")" />
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="J A Devanarayanan · Senior Backend Developer" />
+    <meta property="og:description" content="Backend developer building reliable APIs and the databases behind them, with C#, .NET and PostgreSQL." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="~/favicon.ico" />
+
+    <script>
+        // Apply the saved theme before first paint to avoid a flash.
+        (function () {
+            document.documentElement.classList.add('js');
+            try {
+                var t = localStorage.getItem('theme');
+                if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PortfolioSite.styles.css" asp-append-version="true" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md">
-        <div class="container-fluid px-0">
-            <a class="navbar-brand" asp-page="/Index">DEVA.</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navContent">
-                <ul class="navbar-nav ms-auto gap-2">
-                    <li class="nav-item">
-                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Index" ? "active" : "")" asp-page="/Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Projects" ? "active" : "")" asp-page="/Projects">Work</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Documents" ? "active" : "")" asp-page="/Documents">Docs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Contact" ? "active" : "")" asp-page="/Contact">Contact</a>
-                    </li>
-                </ul>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" asp-page="/Index" aria-label="J A Devanarayanan, home">
+                <span class="brand-mark">JD</span>
+                <span class="brand-name">Devanarayanan</span>
+            </a>
+
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <a class="@NavClass("/Index")" aria-current="@AriaCurrent("/Index")" asp-page="/Index">Home</a>
+                <a class="@NavClass("/Projects")" aria-current="@AriaCurrent("/Projects")" asp-page="/Projects" asp-route-experienceId="">Work</a>
+                <a class="@NavClass("/Documents")" aria-current="@AriaCurrent("/Documents")" asp-page="/Documents">Documents</a>
+                <a class="@NavClass("/Contact")" aria-current="@AriaCurrent("/Contact")" asp-page="/Contact">Contact</a>
+                <a class="btn btn-primary btn-sm nav-resume" href="@resumeUrl" target="_blank" rel="noopener">@Icon.Get("download", 16) Resume</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" type="button" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="show-light">@Icon.Get("moon")</span>
+                    <span class="show-dark">@Icon.Get("sun")</span>
+                </button>
+                <button class="icon-btn menu-btn" type="button" id="menu-toggle" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
+                    <span class="menu-open">@Icon.Get("menu")</span>
+                    <span class="menu-close">@Icon.Get("close")</span>
+                </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <main role="main">
+    <main id="main">
         @RenderBody()
     </main>
 
-    <footer>
-        <div class="container">
-            <h3 class="mb-4">DEVA.</h3>
-            <div class="d-flex justify-content-center gap-4 mb-4">
-                <a href="#" class="text-muted"><i class="fab fa-github fa-lg"></i></a>
-                <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
-                <a href="#" class="text-muted"><i class="fab fa-twitter fa-lg"></i></a>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>
+                <div class="footer-name">J A Devanarayanan</div>
+                <div class="muted">Senior Backend Developer · Thiruvananthapuram, India</div>
             </div>
-            <p class="text-light small">&copy; 2026 Devanarayanan. Built for the modern web.</p>
+            <div class="footer-links">
+                <a href="mailto:devanarayananja98@gmail.com">@Icon.Get("mail", 16) Email</a>
+                <a href="https://www.linkedin.com/in/deva-narayanan-9b2114306" target="_blank" rel="noopener">@Icon.Get("linkedin", 16) LinkedIn</a>
+                <a href="@resumeUrl" target="_blank" rel="noopener">@Icon.Get("file", 16) Resume</a>
+                <a asp-page="/Contact">@Icon.Get("chat", 16) Contact</a>
+            </div>
+            <div class="muted small">&copy; @DateTime.Now.Year J A Devanarayanan. Built with ASP.NET Core.</div>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

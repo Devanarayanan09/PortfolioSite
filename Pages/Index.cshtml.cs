@@ -19,16 +19,25 @@ namespace PortfolioSite.Pages
 
         public async Task OnGetAsync()
         {
-            Experiences = await _context.Experiences
-                .Include(e => e.Projects)
-                .OrderByDescending(e => e.StartDate)
+            // Employers newest first; the side-projects entry goes last.
+            Experiences = (await _context.Experiences
+                    .Include(e => e.Projects)
+                    .ToListAsync())
+                .OrderBy(e => e.Company == "Independent Projects")
+                .ThenByDescending(e => e.StartDate)
+                .ToList();
+
+            // Professional work first (most recent employer first), side projects last.
+            var projects = await _context.Projects
+                .Include(p => p.Experience)
+                .Where(p => p.IsFeatured)
                 .ToListAsync();
 
-            FeaturedProjects = await _context.Projects
-                .Where(p => p.IsFeatured)
-                .OrderByDescending(p => p.Id)
-                .Take(3)
-                .ToListAsync();
+            FeaturedProjects = projects
+                .OrderBy(p => p.Experience?.Company == "Independent Projects")
+                .ThenByDescending(p => p.Experience?.StartDate)
+                .ThenBy(p => p.Id)
+                .ToList();
         }
     }
 }

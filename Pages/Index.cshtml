@@ -1,105 +1,246 @@
 @page
 @model IndexModel
+@using PortfolioSite.Helpers
+@inject IWebHostEnvironment Env
 @{
-    ViewData["Title"] = "Digital Portfolio";
+    ViewData["Title"] = "";
+    var resumeUrl = ContentHelpers.Versioned(Env, "/images/Documents/Resume.pdf");
+    var current = Model.Experiences.FirstOrDefault(e => e.IsCurrent && e.Company != "Independent Projects");
+
+    var skillGroups = new (string Title, string[] Items)[]
+    {
+        ("Languages & frameworks", new[] { "C#", "SQL", "PL/pgSQL", "T-SQL", ".NET 8", "ASP.NET Core", "ASP.NET Core Web API", "ASP.NET MVC" }),
+        ("Data access & databases", new[] { "PostgreSQL", "SQL Server", "Stored procedures", "Functions", "Query optimization", "EF Core", "Entity Framework", "ADO.NET", "LINQ" }),
+        ("Architecture & APIs", new[] { "REST APIs", "Microservices", "Multi-tenant (DB per tenant)", "Clean Architecture", "Repository pattern", "Mapster", "Swagger / OpenAPI" }),
+        ("Testing & tooling", new[] { "xUnit", "Moq", "Postman", "Git", "GitLab", "Visual Studio", "SSMS", "JIRA", "Agile / Scrum" }),
+    };
 }
 
-<section class="hero-section">
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="reveal">
+            <span class="badge-dot">@(current is null ? "Senior Backend Developer" : $"{current.Position} at {current.Company.Replace(" Pvt Ltd", "")}")</span>
+            <p class="hero-name">J A Devanarayanan</p>
+            <h1 class="hero-title">Backend developer building <span class="hl">reliable APIs</span> and the databases behind them.</h1>
+            <p class="hero-lead">
+                4+ years building business applications in C#, ASP.NET Core Web API, ASP.NET MVC and SQL. I design REST APIs, write stored procedures
+                and functions in SQL Server and PostgreSQL, tune queries and implement complex business logic: enterprise applications at
+                Infosys, and now a multi-tenant, microservices-based SaaS platform.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="@resumeUrl" target="_blank" rel="noopener">@Icon.Get("download") Download resume</a>
+                <a class="btn btn-secondary" asp-page="/Projects" asp-route-experienceId="">View work @Icon.Get("arrow-right", 16)</a>
+            </div>
+        </div>
+
+        <aside class="card facts reveal" aria-label="At a glance">
+            <dl>
+                <div class="fact"><dt>Role</dt><dd>Senior Backend Developer</dd></div>
+                <div class="fact"><dt>Experience</dt><dd>4+ years <span class="muted">· Cocopalms, Infosys</span></dd></div>
+                <div class="fact"><dt>Core stack</dt><dd>C# · .NET 8 · ASP.NET Core · PostgreSQL · SQL Server</dd></div>
+                <div class="fact"><dt>Focus</dt><dd>APIs, databases and business logic</dd></div>
+                <div class="fact"><dt>Based in</dt><dd>Thiruvananthapuram, India</dd></div>
+            </dl>
+        </aside>
+    </div>
+</section>
+
+<section class="section section-alt" id="focus">
     <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7 reveal">
-                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-4 rounded-pill bg-white shadow-sm border border-light">
-                    <span class="d-block w-2 h-2 rounded-circle bg-success"></span>
-                    <span class="small fw-bold text-muted">Senior Backend Developer</span>
-                </div>
-                <h1 class="hero-title">
-                    I build the <br /> 
-                    <span style="color: var(--secondary)">Engines</span> of the <br />
-                    modern web.
-                </h1>
-                <p class="hero-subtitle">
-                    Hi, I'm Deva. I specialize in architecting high-performance backend systems that power seamless digital experiences.
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a asp-page="/Projects" class="btn-main">View My Work</a>
-                    <a asp-page="/Contact" class="btn-alt">Let's Talk</a>
-                </div>
+        <div class="section-head reveal">
+            <div>
+                <span class="eyebrow">// what I work on</span>
+                <h2 class="section-title">Backend work, end to end</h2>
+                <p class="section-lead">From the API contract down to the SQL that runs behind it.</p>
             </div>
-            <div class="col-lg-5 d-none d-lg-block reveal" style="transition-delay: 0.2s">
-                <div class="position-relative">
-                    <div class="position-absolute top-50 start-50 translate-middle w-100 h-100 rounded-circle" style="background: var(--primary-soft); filter: blur(80px); z-index: -1;"></div>
-                    <div class="card-neo p-5 text-center">
-                        <div class="mb-4 d-inline-block p-4 rounded-4" style="background: var(--bg-secondary); color: var(--primary);">
-                            <i class="fas fa-layer-group fa-4x"></i>
-                        </div>
-                        <h3 class="mb-3">Full Stack Mindset</h3>
-                        <p class="text-muted small">Though I'm a backend specialist, I understand the whole lifecycle of a product.</p>
-                        <div class="d-flex justify-content-center gap-2 mt-4">
-                            <span class="tag-pill">.NET 8</span>
-                            <span class="tag-pill">SQL</span>
-                            <span class="tag-pill">Web API</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+
+        <div class="focus-grid">
+            <article class="card focus reveal">
+                <div class="focus-icon">@Icon.Get("server", 20)</div>
+                <h3>REST API development</h3>
+                <p>ASP.NET Core Web API endpoints for finance, inventory, sales and master data, documented with Swagger and checked with Postman.</p>
+            </article>
+            <article class="card focus reveal">
+                <div class="focus-icon">@Icon.Get("database", 20)</div>
+                <h3>Database design &amp; tuning</h3>
+                <p>PostgreSQL functions and SQL Server stored procedures; report and list queries moved into the database and tuned.</p>
+            </article>
+            <article class="card focus reveal">
+                <div class="focus-icon">@Icon.Get("receipt", 20)</div>
+                <h3>Complex business logic</h3>
+                <p>Rules that have to be exact: tax and GST handling, XBRL filing, fixed assets and depreciation posted to journal entries.</p>
+            </article>
+            <article class="card focus reveal">
+                <div class="focus-icon">@Icon.Get("layers", 20)</div>
+                <h3>Multi-tenant &amp; multi-branch</h3>
+                <p>A separate PostgreSQL database per tenant, with changes rolled out across tenant environments, and branch-level reporting.</p>
+            </article>
+            <article class="card focus reveal">
+                <div class="focus-icon">@Icon.Get("chart", 20)</div>
+                <h3>Reports &amp; dashboards</h3>
+                <p>18+ kitchen and subscription reports with KPI statistics, plus subscription, operations and CRM dashboards.</p>
+            </article>
+            <article class="card focus reveal">
+                <div class="focus-icon">@Icon.Get("check", 20)</div>
+                <h3>Unit testing</h3>
+                <p>xUnit and Moq tests for branch, country/state, cost center, tax and flash offer modules.</p>
+            </article>
         </div>
     </div>
 </section>
 
-<section class="bg-white">
+<section class="section" id="experience">
     <div class="container">
-        <div class="row mb-5 reveal">
-            <div class="col-lg-6">
-                <h2 class="display-4 mb-3">Work <span class="text-primary">Experience</span></h2>
-                <p class="text-muted lead">Collaborating with industry leaders to build robust software.</p>
+        <div class="section-head reveal">
+            <div>
+                <span class="eyebrow">// experience</span>
+                <h2 class="section-title">Where I've worked</h2>
             </div>
         </div>
 
-        <div class="row g-4">
-            @foreach (var exp in Model.Experiences.OrderByDescending(e => e.StartDate))
+        <ol class="timeline">
+            @foreach (var exp in Model.Experiences)
             {
-                <div class="col-lg-6 reveal">
-                    <a asp-page="/Projects" asp-route-experienceId="@exp.Id" class="text-decoration-none d-block h-100">
-                        <div class="card-neo h-100">
-                            <div class="d-flex justify-content-between align-items-start mb-4">
-                                <div>
-                                    <h3 class="h4 mb-1">@exp.Position</h3>
-                                    <div class="fw-bold text-primary">@exp.Company</div>
-                                </div>
-                                <div class="small fw-bold text-muted px-3 py-1 rounded-pill bg-light">
-                                    @exp.StartDate.Year — @(exp.IsCurrent ? "Now" : exp.EndDate?.Year.ToString())
-                                </div>
-                            </div>
-                            <p class="text-muted mb-4">@exp.Description</p>
-                            <div class="d-flex flex-wrap gap-2 mb-4">
-                                @foreach (var tech in exp.Technologies.Split(','))
-                                {
-                                    <span class="tag-pill m-0">@tech.Trim()</span>
-                                }
-                            </div>
-                            <div class="mt-auto pt-3 border-top border-light d-flex align-items-center text-primary fw-bold small">
-                                <span>View Projects</span>
-                                <i class="fas fa-arrow-right ms-2 transition-transform"></i>
-                            </div>
-                        </div>
-                    </a>
+                <li class="card role reveal">
+                    <div class="role-when">
+                        <div class="period">@exp.Period()</div>
+                        <div>@exp.Duration()</div>
+                        @if (exp.IsCurrent)
+                        {
+                            <span class="current">Current</span>
+                        }
+                    </div>
+                    <div>
+                        <h3>@exp.Position</h3>
+                        <div class="company">@exp.Company</div>
+                        <p>@exp.Description</p>
+                        <ul class="tags" aria-label="Technologies">
+                            @foreach (var tech in ContentHelpers.SplitTags(exp.Technologies))
+                            {
+                                <li class="tag">@tech</li>
+                            }
+                        </ul>
+                        @if (exp.Projects.Any())
+                        {
+                            <a class="link-arrow" asp-page="/Projects" asp-route-experienceId="@exp.Id">
+                                @(exp.Projects.Count == 1 ? $"See {exp.Projects[0].Title}" : $"See {exp.Projects.Count} projects") @Icon.Get("arrow-right", 16)
+                            </a>
+                        }
+                    </div>
+                </li>
+            }
+        </ol>
+    </div>
+</section>
+
+<section class="section section-alt" id="projects">
+    <div class="container">
+        <div class="section-head reveal">
+            <div>
+                <span class="eyebrow">// selected work</span>
+                <h2 class="section-title">Projects</h2>
+            </div>
+            <a class="link-arrow" asp-page="/Projects" asp-route-experienceId="">All project details @Icon.Get("arrow-right", 16)</a>
+        </div>
+
+        <div class="project-grid">
+            @foreach (var project in Model.FeaturedProjects)
+            {
+                <article class="card project-card reveal">
+                    <div class="project-top">
+                        <div class="project-mark" aria-hidden="true">@project.Title.Substring(0, Math.Min(2, project.Title.Length)).ToUpperInvariant()</div>
+                        @if (!string.IsNullOrEmpty(project.ProjectUrl))
+                        {
+                            <a class="ext-link" href="@project.ProjectUrl" target="_blank" rel="noopener">
+                                @ContentHelpers.LinkLabel(project.ProjectUrl) @Icon.Get("arrow-up-right", 15)
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="project-meta">Internal application</span>
+                        }
+                    </div>
+                    <h3><a asp-page="/Projects" asp-route-experienceId="@project.ExperienceId" asp-fragment="project-@project.Id" style="color: inherit">@project.Title</a></h3>
+                    <div class="project-meta">@project.Experience?.Company</div>
+                    <p class="summary">@project.Summary</p>
+                    <ul class="tags" aria-label="Technologies">
+                        @foreach (var tech in ContentHelpers.SplitTags(project.Technologies).Take(5))
+                        {
+                            <li class="tag">@tech</li>
+                        }
+                    </ul>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section" id="skills">
+    <div class="container">
+        <div class="section-head reveal">
+            <div>
+                <span class="eyebrow">// toolkit</span>
+                <h2 class="section-title">Technical skills</h2>
+                <p class="section-lead">Also working knowledge of React and Next.js, and Node.js (Express) for API gateway changes.</p>
+            </div>
+        </div>
+        <div class="skills">
+            @foreach (var group in skillGroups)
+            {
+                <div class="card skill-group reveal">
+                    <h3>@group.Title</h3>
+                    <ul class="tags">
+                        @foreach (var item in group.Items)
+                        {
+                            <li class="tag">@item</li>
+                        }
+                    </ul>
                 </div>
             }
         </div>
     </div>
 </section>
 
-<section class="py-5">
+<section class="section section-alt" id="recognition">
     <div class="container">
-        <div class="card-neo bg-primary text-white text-center p-5 reveal">
-            <h2 class="display-5 text-white mb-4">Ready to start a <br /> project together?</h2>
-            <p class="lead mb-5 opacity-75">I'm currently available for senior-level backend consulting or full-time roles.</p>
-            <a asp-page="/Contact" class="btn btn-light rounded-pill px-5 py-3 fw-bold text-primary">Get in Touch</a>
+        <div class="section-head reveal">
+            <div>
+                <span class="eyebrow">// recognition</span>
+                <h2 class="section-title">Awards</h2>
+            </div>
+            <a class="link-arrow" asp-page="/Documents">View certificates @Icon.Get("arrow-right", 16)</a>
+        </div>
+        <div class="award-list">
+            <div class="card award reveal">
+                <div class="focus-icon">@Icon.Get("award", 20)</div>
+                <div>
+                    <h3>Infosys Insta Award · Dec 2024</h3>
+                    <p>For handling the entire PEZA process UAT without issues.</p>
+                </div>
+            </div>
+            <div class="card award reveal">
+                <div class="focus-icon">@Icon.Get("award", 20)</div>
+                <div>
+                    <h3>Infosys Insta Award · Jun 2024</h3>
+                    <p>For progress on assigned tasks and for carrying out release activities.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<style>
-    .w-2 { width: 0.5rem; }
-    .h-2 { height: 0.5rem; }
-</style>
+<section class="section">
+    <div class="container">
+        <div class="cta reveal">
+            <div>
+                <h2>Hiring for a .NET backend role?</h2>
+                <p>I'm open to senior backend developer roles working with C#, ASP.NET Core and SQL. Email is the quickest way to reach me.</p>
+            </div>
+            <div class="cta-actions">
+                <a class="btn btn-primary" href="mailto:devanarayananja98@gmail.com">@Icon.Get("mail") Email me</a>
+                <a class="btn btn-ghost" asp-page="/Contact">Other ways to reach me</a>
+            </div>
+        </div>
+    </div>
+</section>

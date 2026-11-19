@@ -10,6 +10,10 @@ namespace PortfolioSite.Models
         [StringLength(100)]
         public string Title { get; set; } = string.Empty;
 
+        // One-line summary shown on project cards
+        [StringLength(200)]
+        public string Summary { get; set; } = string.Empty;
+
         [StringLength(500)]
         public string Description { get; set; } = string.Empty;
 

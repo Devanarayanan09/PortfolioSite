@@ -86,16 +86,16 @@ namespace PortfolioSite.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "My updated resume with skills and experience",
+                            Description = "Current resume: experience, projects and technical skills.",
                             DocumentType = "Resume",
                             FilePath = "/images/Documents/Resume.pdf",
                             IsPublic = true,
-                            Title = "Professional Resume"
+                            Title = "Resume"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Notice period served",
+                            Description = "Relieving letter from Infosys Limited.",
                             DocumentType = "Relieving Letter",
                             FilePath = "/images/Documents/Relieving Letter.pdf",
                             IsPublic = true,
@@ -104,25 +104,25 @@ namespace PortfolioSite.Migrations
                         new
                         {
                             Id = 3,
-                            Description = "From Infosys",
-                            DocumentType = "Award Certificate",
+                            Description = "Certificate of appreciation for progress on assigned tasks and release activities.",
+                            DocumentType = "Award",
                             FilePath = "/images/Documents/Award1.png",
                             IsPublic = true,
-                            Title = "Award1"
+                            Title = "Infosys Insta Award, Jun 2024"
                         },
                         new
                         {
                             Id = 4,
-                            Description = "From Infosys",
-                            DocumentType = "Award Certificate",
+                            Description = "Certificate of appreciation for handling the entire PEZA process UAT without issues.",
+                            DocumentType = "Award",
                             FilePath = "/images/Documents/Award2.png",
                             IsPublic = true,
-                            Title = "Award2"
+                            Title = "Infosys Insta Award, Dec 2024"
                         },
                         new
                         {
                             Id = 5,
-                            Description = "Experience Letter From Infosys",
+                            Description = "Experience letter from Infosys Limited.",
                             DocumentType = "Experience Letter",
                             FilePath = "/images/Documents/Experience_Letter.pdf",
                             IsPublic = true,
@@ -174,32 +174,32 @@ namespace PortfolioSite.Migrations
                         {
                             Id = 1,
                             Company = "Infosys Limited",
-                            Description = "Engineered dual-platform solutions (Admin & Employee Portals) for Infosys, streamlining the end-to-end lifecycle of onsite employees. Developed critical systems for document verification, visa processing, and manager approval workflows, ensuring seamless international transitions and landing verification for global talent.",
+                            Description = "Maintained and enhanced GLOMO and IVISA, two internal enterprise applications for global mobility, visa processing and overseas assignments, each with separate admin and employee portals. Worked across employee declarations, document verification, approval workflows, stored procedures and automated notifications.",
                             EndDate = new DateTime(2025, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCurrent = false,
                             Position = "Senior Systems Engineer",
                             StartDate = new DateTime(2022, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Technologies = "C#, ASP.NET MVC, SQL Server, .NET Core, ADO.NET"
+                            Technologies = "C#, ASP.NET MVC, Entity Framework, ADO.NET, SQL Server"
                         },
                         new
                         {
                             Id = 2,
-                            Company = "Cocopalms Tech Pvt Lmtd",
-                            Description = "Spearheading backend development for Cocopalms, a leading Kuwaiti health-tech ecosystem specializing in diet-based food delivery. Developed and maintained several modules of 'Bizo Suite,' a comprehensive accounting engine integrated with their food delivery infrastructure to manage complex financial operations across multiple web and mobile platforms.",
+                            Company = "Cocopalms Tech Pvt Ltd",
+                            Description = "Backend developer on Bizo Suite, a multi-tenant, microservices-based business platform. I build finance, tax and compliance features (GST, XBRL filing, fixed assets, cost centers), reports and dashboards, and the REST APIs and PostgreSQL functions behind them.",
                             IsCurrent = true,
                             Position = "Senior Backend Developer",
                             StartDate = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Technologies = "ASP.NET Core Web API, PostgreSQL, Microservices"
+                            Technologies = ".NET 8, ASP.NET Core Web API, PostgreSQL, Microservices, xUnit"
                         },
                         new
                         {
                             Id = 3,
                             Company = "Independent Projects",
-                            Description = "Developing high-performance, modern web applications and digital solutions as an independent developer. Focused on creating seamless user experiences using cutting-edge technologies and best practices in software architecture.",
+                            Description = "Side projects built outside my day job: DropSpike, a Flutter productivity app for Android, and Jananthikam, an ASP.NET Core and PostgreSQL backend behind a Next.js site. Both built with AI-assisted development.",
                             IsCurrent = true,
                             Position = "Full Stack Developer",
                             StartDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Technologies = "Next.js, TypeScript, Tailwind CSS, Framer Motion, .NET Core Web API, PostgreSQL"
+                            Technologies = "Flutter, Dart, SQLite, ASP.NET Core Web API, PostgreSQL, Next.js"
                         });
                 });
 
@@ -230,6 +230,11 @@ namespace PortfolioSite.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Technologies")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -250,46 +255,62 @@ namespace PortfolioSite.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "• Developed 5+ declarations requiring employee acceptance in line with client specifications, enabling document generation and download functionality of the declarations for admin review. <br>• Configured visa-types by refactoring 20+ stored procedures and application logic. <br>• Implemented automated mailers for status updates, eliminating manual processing entirely. ",
+                            Description = "• Built 5+ employee declarations to client specifications, with document generation and download for admin review <br>• Added support for new visa types by refactoring 20+ SQL Server stored procedures and the related C# logic <br>• Developed the visa process flow for the Philippines and handled the PEZA process UAT end to end <br>• Implemented automated status-update emails, replacing manual notifications to employees",
                             ExperienceId = 1,
                             ImageUrl = "/images/Projects/GLOMO.jpg",
                             IsFeatured = true,
                             ProjectUrl = "",
-                            Technologies = "ASP.NET Core, ASP.NET, MVC, SQL Server, Entity Framework",
+                            Summary = "Internal global mobility application covering employee declarations, visa processes, documents, approvals and notifications.",
+                            Technologies = "ASP.NET MVC, C#, Entity Framework, ADO.NET, SQL Server",
                             Title = "GLOMO"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "• Designed various admin functionalities like document download, approval/rejection, admin stages etc. <br>• Integrated file validation APIs to enforce country-specific document compliance, reducing manual verification by 90%. <br>• Deployed an email notification system that removed all manual status update tasks. ",
+                            Description = "• Built admin features: document download, approval and rejection, and admin workflow stages <br>• Integrated file validation APIs to enforce country-specific document requirements <br>• Implemented automated status-update emails, replacing manual notifications <br>• Traced C# code and stored procedures to assess the impact of each change before modifying it",
                             ExperienceId = 1,
                             ImageUrl = "/images/Projects/GLOMO.jpg",
                             IsFeatured = true,
                             ProjectUrl = "",
-                            Technologies = "ASP.NET, ADO.NET, MVC, SQL Server",
+                            Summary = "Internal application used to administer visa and overseas assignment processes.",
+                            Technologies = "ASP.NET MVC, C#, ADO.NET, SQL Server",
                             Title = "IVISA"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "• Engineered scalable backend services using .NET Web API and PostgreSQL, implementing business logic, data processing, and reporting capabilities for enterprise applications <br>• Led development of finance modules, implementing core accounting logic and system workflows <br>• Designed and implemented 15+ accounting and financial reports covering financial analysis and accounting operations <br>• Designed and implemented 18+ kitchen management reports covering diet planning, inventory, production, subscriptions, delivery, shop orders, POS orders, and operational KPIs <br>• Developed statistical reporting features to support business analytics and data-driven decision-making <br>• Implemented multi-branch architecture, enabling seamless operations across multiple business units <br>• Worked with a multi-tenant database architecture using separate PostgreSQL databases per tenant, supporting database changes and deployments across multiple tenant environments <br>• Optimized complex SQL queries and PostgreSQL functions to improve reporting performance and reduce unnecessary database processing <br>• Performed API testing and validation using Postman and Swagger, ensuring reliability and correctness <br>• Wrote AI-assisted unit tests to improve code quality, maintainability, and test coverage <br>• Leveraged AI-assisted development and testing tools to accelerate implementation, troubleshoot complex issues, generate test coverage, and improve development productivity",
+                            Description = "• Built the XBRL filing module: statement and line-item mapping, taxonomy and note disclosures, validation rules and Arabic line items <br>• Added GST support (HSN/SAC codes, tax preferences, exemptions, TDS settings) across finance, inventory and sales <br>• Built the cost center and fixed-asset modules, with depreciation posted to journal entries and activity logs <br>• Added branch filtering to the finance reports and print-outs <br>• Wrote 18+ kitchen and subscription reports with KPI statistics, plus subscription, operations and CRM dashboards <br>• Moved report and list queries into PostgreSQL functions and tuned them to cut unnecessary database processing <br>• Built the flash offer, purchase request, price list, kitchen settings and branch master APIs <br>• Rolled out database changes across separate per-tenant PostgreSQL databases <br>• Wrote xUnit and Moq tests and verified endpoints with Postman and Swagger",
                             ExperienceId = 2,
                             ImageUrl = "/images/Projects/Cocopalms.png",
                             IsFeatured = true,
                             ProjectUrl = "https://bizosuite.com/",
-                            Technologies = "ASP.NET Core Web API, PostgreSQL, Swagger",
-                            Title = "Bizo"
+                            Summary = "Business management platform covering finance, accounting, kitchen operations, inventory, subscriptions, sales and delivery.",
+                            Technologies = ".NET 8, ASP.NET Core Web API, PostgreSQL, PL/pgSQL, xUnit, Moq, Swagger",
+                            Title = "Bizo Suite"
                         },
                         new
                         {
                             Id = 4,
-                            Description = "Successfully architected and deployed a high-performance, bilingual (English & Malayalam) literary archive and book discovery platform, fully assisted by the Antigravity AI coding assistant. This production-ready application features a curated database of book reviews and author spotlights, utilizing Full-Stack Development to bridge a React-based frontend with a robust C# Restful API. The project showcases Responsive Web Design with premium glassmorphic aesthetics and Localization (i18n) for seamless script switching. Key technical implementations include Cloud Asset Management for persistent image storage, advanced Search Engine Optimization (SEO) via dynamic metadata generation, and complex State Management to handle real-time global library searches and user-driven content.",
+                            Description = "• Built the ASP.NET Core REST API and PostgreSQL database behind a Next.js 14 frontend <br>• Added English and Malayalam localization, author spotlights and site-wide search <br>• Stored images in cloud object storage (S3) and generated SEO metadata for each page <br>• Built with AI-assisted development",
                             ExperienceId = 3,
                             ImageUrl = "/images/Projects/Jananthikam.jpg",
                             IsFeatured = true,
                             ProjectUrl = "https://jananthikam.com/",
-                            Technologies = "Next.js 14, ASP.NET Core, PostgreSQL, TypeScript, Cloud Asset Management (S3), SEO/Metadata API, RESTful API Design",
+                            Summary = "Bilingual (English and Malayalam) book review and literary archive site with author spotlights.",
+                            Technologies = "ASP.NET Core, PostgreSQL, Next.js 14, TypeScript, S3",
                             Title = "Jananthikam"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "• Built habit tracking with streaks, expense and budget tracking, borrowed-money records and a to-do list with reminders and natural-language task entry <br>• Added a focus timer with ambient soundscapes and a Reel Blocker that limits Shorts and Reels per session or per day <br>• Added analytics for habits, spending, focus and screen time, plus a home-screen widget <br>• Stored all data on the device in SQLite, with data export and sharing <br>• Integrated in-app purchases for a premium tier, in-app updates and review prompts, and Shorebird code push for over-the-air fixes <br>• Built with AI-assisted development",
+                            ExperienceId = 3,
+                            ImageUrl = "",
+                            IsFeatured = true,
+                            ProjectUrl = "https://play.google.com/store/apps/details?id=com.jananthikam.dropspike",
+                            Summary = "Flutter productivity app for Android that brings habits, expenses, to-dos and focused work into one app.",
+                            Technologies = "Flutter, Dart, SQLite (sqflite), Provider, In-app purchases, Shorebird",
+                            Title = "DropSpike"
                         });
                 });
 
