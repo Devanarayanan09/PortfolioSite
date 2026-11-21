@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Exports the portfolio as plain HTML into docs/ for GitHub Pages.
 
@@ -14,9 +14,9 @@
     powershell -ExecutionPolicy Bypass -File tools\export-static.ps1
 #>
 param(
-    # Path the site is served under. "/PortfolioSite" for devanarayanan09.github.io/PortfolioSite/.
-    # Use "" for a custom domain or a <user>.github.io repository.
-    [string]$BasePath = "/PortfolioSite",
+    # Path the site is served under. "" for devanarayanan09.github.io (a <user>.github.io repository).
+    # Use e.g. "/PortfolioSite" if the site is served from a project repository instead.
+    [string]$BasePath = "",
     [int]$Port = 5111
 )
 
@@ -93,3 +93,4 @@ finally {
     Remove-Item "$tempDb*" -Force -ErrorAction SilentlyContinue
     Remove-Item Env:ConnectionStrings__PortfolioDb, Env:ASPNETCORE_ENVIRONMENT -ErrorAction SilentlyContinue
 }
+
